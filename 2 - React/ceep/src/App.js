@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ListaDeNotas from "./components/ListaDeNotas/index";
 import FormularioCadastro from "./components/FormularioCadastro/index";
 import "./assets/app.css";
 import './assets/index.css';
+class App extends Component {
 
-function App() {
-  return (
-    <section className="conteudo">
-      <FormularioCadastro />
-      <ListaDeNotas />
-    </section>
-  );
+  constructor(){
+    super();
+    this.state = { 
+      notas:[]
+    };
+  }
+
+  criarNota(titulo, texto){
+      const novaNota = {titulo, texto};
+      const novoArrayNotas = [...this.state.notas, novaNota] 
+      const novoEstado = { notas:novoArrayNotas }
+      this.setState(novoEstado);
+  }
+
+  render(){
+    return (
+      <section className="conteudo">
+        <FormularioCadastro criarNota={this.criarNota.bind(this)}/>
+        <ListaDeNotas notas={this.state.notas}/>
+      </section>
+    );
+  }
 }
 
 export default App;
