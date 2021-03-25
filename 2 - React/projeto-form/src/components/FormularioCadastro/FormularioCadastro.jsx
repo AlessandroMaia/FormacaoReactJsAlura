@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-function FormularioCadastro({ onSubmit }) {
+function FormularioCadastro({ onSubmit, validarCpf }) {
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
@@ -38,7 +38,10 @@ function FormularioCadastro({ onSubmit }) {
             <TextField
                 value={cpf}
                 onChange={(event) => { setCpf(event.target.value) }}
-                onBlur={(event) => setErros({ cpf: { valido: false, texto: "CPF deve ter 11 digitos!" } })}
+                onBlur={(event) => {
+                    const ehValido = validarCpf(cpf);
+                    setErros({cpf:ehValido})
+                }}
                 error={!erros.cpf.valido}
                 helperText={erros.cpf.texto}
                 id="cpf"
