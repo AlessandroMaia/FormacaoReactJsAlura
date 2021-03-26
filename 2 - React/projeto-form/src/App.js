@@ -7,7 +7,7 @@ function App() {
   return (
     <Container component="article" maxWidth="sm">
       <Typography variant="h3" component="h1" align="center">Formulário de cadastro</Typography>
-      <FormularioCadastro onSubmit={onSubmitForm} validarCpf={validarCpf}/>
+      <FormularioCadastro aoEnviar={onSubmitForm} validarCpf={validarCpf}/>
     </Container>
   );
 }
