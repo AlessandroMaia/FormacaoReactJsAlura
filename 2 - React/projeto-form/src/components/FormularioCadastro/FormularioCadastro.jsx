@@ -4,7 +4,7 @@ import DadosEntrega from './DadosEntrega';
 import DadosPessoais from './DadosPessoais';
 import DadosUsuario from './DadosUsuario';
 
-function FormularioCadastro({ aoEnviar, validarCpf }) {
+function FormularioCadastro({ aoEnviar }) {
     const [etapaAtual, setEtapaAtual] = useState(0);
     const [dadosColetados, setDados] = useState({});
 
@@ -15,8 +15,8 @@ function FormularioCadastro({ aoEnviar, validarCpf }) {
     });
 
     const formularios = [
-        <DadosUsuario aoEnviar={coletarDados} aoVoltar={anterior} />,
-        <DadosPessoais aoEnviar={coletarDados} validarCpf={validarCpf} />,
+        <DadosUsuario aoEnviar={coletarDados} />,
+        <DadosPessoais aoEnviar={coletarDados} />,
         <DadosEntrega aoEnviar={coletarDados} />,
         <Typography variant="h5">Obrigado pelo Cadastro</Typography>
     ]
@@ -28,12 +28,6 @@ function FormularioCadastro({ aoEnviar, validarCpf }) {
 
     function proximo() {
         setEtapaAtual(etapaAtual + 1)
-    }
-
-    function anterior() {
-        if (etapaAtual === 0)
-            return;
-        setEtapaAtual(etapaAtual - 1)
     }
 
     return <>
